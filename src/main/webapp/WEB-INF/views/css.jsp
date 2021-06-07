@@ -1,9 +1,8 @@
 
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />
 <link rel = "stylesheet" type ="text/css" href="<c:url value = '/css/bootstrap.css'/>" />
 <link rel = "stylesheet" type ="text/css" href="<c:url value = '/css/style.css'/>" />
 <link rel = "stylesheet" type ="text/css" href="<c:url value = '/css/font-awesome.css'/>" />
-<link rel = "stylesheet" type ="text/css" href="<c:url value = '/css/test.css'/>" />
 <link rel = "stylesheet" type ="text/css" href="<c:url value = '/css/easy-responsive-tabs.css'/>" />
 
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">

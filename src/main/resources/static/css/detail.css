@@ -1,0 +1,35 @@
+.flex-control-thumbs li img{
+    width: 25%;
+    float: left;
+}
+ol{
+    list-style-type: none;
+}
+.flex-direction-nav{
+    visibility: hidden;
+}
+.rating1{
+    pointer-events: none;
+}
+.cartbutton{
+    padding: 20px 0px 20px 17px !important;
+}
+.occasion-cart{
+    float:left;
+}
+.carticondata{
+    float: right;
+    margin-right: 120px;
+    margin-top: -38px;
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+.lovedicondata{
+    float: right;
+    margin-right: 105px;
+    margin-top: -38px;
+    position: relative;
+    z-index: 2;
+    color: white;
+}

@@ -28,6 +28,16 @@ public class CartController {
     @Autowired
     ProductService productService;
 
+    @RequestMapping("cart")
+    public String viewCart(HttpSession session,Model model) {
+        if (session.getAttribute("cart") == null) {
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        } else cart = (Cart) session.getAttribute("cart");
+        model.addAttribute("cart",cart);
+       return "cart";
+    }
+
     @RequestMapping("cart/add")
     public void addCart(@RequestParam String id, HttpSession session) {
         if (session.getAttribute("cart") == null) {
@@ -66,9 +76,6 @@ public class CartController {
             cart = new Cart();
             session.setAttribute("cart", cart);
         } else cart = (Cart) session.getAttribute("cart");
-
-
-
         session.setAttribute("cart", cart);
     }
 
@@ -81,6 +88,4 @@ public class CartController {
         }
         return (Cart) session.getAttribute("cart");
     }
-
-
 }

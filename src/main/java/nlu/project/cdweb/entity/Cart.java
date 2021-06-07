@@ -3,30 +3,31 @@ package nlu.project.cdweb.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
-@Getter @Setter
 
 public class Cart {
-    private static HashMap<String, CartDetail> data;
+    @Setter
+    private static HashMap<String, CartDetail> details;
+    @Setter
     private static int total;
 
     public Cart() {
-        this.data = new HashMap<>();
+        this.details = new HashMap<>();
         this.total = 0;
     }
 
     public CartDetail get(String id) {
-        return data.get(id);
+        return details.get(id);
     }
 
     public static void put(Product product) {
         CartDetail cartDetail;
-        if(data.get(product.getId())==null){
+        if(details.get(product.getId())==null){
             cartDetail = new CartDetail();
-            cartDetail.setQuanlity(1);
+            cartDetail.setQuatity(1);
             cartDetail.setPrice(product.getPrice());
+            cartDetail.setProduct(product);
             // check date sale
             if(true) {
                 cartDetail.setSale(product.getSale().getPercent());
@@ -34,19 +35,19 @@ public class Cart {
                 cartDetail.setSale(0);
             }
             cartDetail.updateTotal();
-            data.put(product.getId(),cartDetail);
+            details.put(product.getId(),cartDetail);
         }else {
-            cartDetail = data.get(product.getId());
-            cartDetail.setQuanlity(cartDetail.getQuanlity()+1);
+            cartDetail = details.get(product.getId());
+            cartDetail.setQuatity(cartDetail.getQuatity()+1);
             cartDetail.updateTotal();
         }
     }
 
-    public void put(Product product, int quanlity) {
+    public void put(Product product, int quantity) {
         CartDetail cartDetail;
-        if(data.get(product.getId())==null){
+        if(details.get(product.getId())==null){
             cartDetail = new CartDetail();
-            cartDetail.setQuanlity(quanlity);
+            cartDetail.setQuatity(quantity);
             cartDetail.setPrice(product.getPrice());
             // check date sale
             if(true) {
@@ -55,26 +56,37 @@ public class Cart {
                 cartDetail.setSale(0);
             }
             cartDetail.updateTotal();
-            data.put(product.getId(),cartDetail);
+            details.put(product.getId(),cartDetail);
         }else {
-            cartDetail = data.get(product.getId());
-            cartDetail.setQuanlity(cartDetail.getQuanlity()+quanlity);
+            cartDetail = details.get(product.getId());
+            cartDetail.setQuatity(cartDetail.getQuatity()+quantity);
             cartDetail.updateTotal();
         }
+        updateTotal();
     }
 
     public void remove(String id) {
-        data.remove(id);
+        details.remove(id);
+        updateTotal();
     }
 
     public int updateTotal(){
-        for(Map.Entry<String, CartDetail> entry : data.entrySet()) {
+        total = 0;
+        for(Map.Entry<String, CartDetail> entry : details.entrySet()) {
             String key = entry.getKey();
             CartDetail cartDetail = entry.getValue();
             total += cartDetail.getTotal();
         }
         return total;
     }
+    public int size() {
+        return details.size();
+    }
 
-
+    public HashMap<String, CartDetail> getDetails() {
+        return details;
+    }
+    public int getTotal(){
+        return total;
+    }
 }

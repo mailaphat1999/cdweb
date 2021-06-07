@@ -57,7 +57,7 @@ public class HomeController {
 		
 //		Cart cart = CartController.getCart(session);
 //		System.out.println(cart.get("1").getPrice());
-		// ${sessionScope.currentUser}
+// 		${sessionScope.currentUser}
 
 		return "index";
 	}
@@ -76,6 +76,4 @@ public class HomeController {
         model.addAttribute("countSale",saleService.count());
 		return "home";
 	}
-
-	
 }
