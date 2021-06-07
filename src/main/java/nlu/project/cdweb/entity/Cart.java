@@ -3,6 +3,7 @@ package nlu.project.cdweb.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 @Getter @Setter
@@ -67,7 +68,6 @@ public class Cart {
     }
 
     public int updateTotal(){
-
         for(Map.Entry<String, CartDetail> entry : data.entrySet()) {
             String key = entry.getKey();
             CartDetail cartDetail = entry.getValue();
@@ -75,5 +75,6 @@ public class Cart {
         }
         return total;
     }
+
 
 }

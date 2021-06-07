@@ -15,10 +15,10 @@ public interface BatteryService {
 class BatteryServiceImpl implements BatteryService{
 
 	@Autowired
-	private BatteryRepository BatteryRepository;
+	private BatteryRepository batteryRepository;
 	
 	@Override
 	public List<Battery> list() {
-		return BatteryRepository.findAll();
+		return batteryRepository.findAll();
 	}
 }

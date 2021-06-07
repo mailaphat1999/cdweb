@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface BannerRepository extends JpaRepository<Banner, Integer> {
     @Query("SELECT b FROM Banner b WHERE b.location = ?1 ")
-    List<Banner> carousel(String location, Sort orders);
+    List<Banner> banner(String location, Sort orders);
 }

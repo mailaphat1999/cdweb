@@ -31,6 +31,10 @@ public class OrderDetail {
     @JoinColumn(name="iddonhang", nullable=false)
     private Order order;
 
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Product item;
+
     public void updateTotal(){
         this.total = this.amount * (price-sale);
     }

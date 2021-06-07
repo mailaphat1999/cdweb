@@ -15,6 +15,7 @@ public interface ProductService {
 	List<Product> saleProducts();
 	List<Product> hotProducts();
 	List<Product> otherProducts();
+	Product findByID(String id);
 }
 
 @Service
@@ -37,6 +38,9 @@ class ProductServiceImpl implements ProductService{
 	public List<Product> hotProducts() { return productRepository.homeProducts("3",Config.homeProducts(Config.orderByIdAsc())); }
 	@Override
 	public List<Product> otherProducts() { return productRepository.homeProducts("0",Config.homeProducts(Config.orderByIdAsc())); }
+
+	@Override
+	public Product findByID(String id) { return productRepository.findById(id).get(); }
 
 
 }

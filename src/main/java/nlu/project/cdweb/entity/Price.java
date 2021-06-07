@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter @Setter @NoArgsConstructor
 
@@ -23,6 +21,9 @@ public class Price {
     private int end;
     @Column(name = "active")
     private String active;
+
+    @Transient  
+    private List<Product> items;
 
     @Override
     public String toString() {

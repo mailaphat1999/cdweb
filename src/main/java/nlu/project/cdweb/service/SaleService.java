@@ -16,15 +16,15 @@ public interface SaleService {
 class SaleServiceImpl implements SaleService{
 
 	@Autowired
-	private SaleRepository SaleRepository;
+	private SaleRepository saleRepository;
 	
 	@Override
 	public List<Sale> list() {
-		return SaleRepository.findAll();
+		return saleRepository.findAll();
 	}
 
 	@Override
 	public long count() {
-		return SaleRepository.count();
+		return saleRepository.count();
 	}
 }

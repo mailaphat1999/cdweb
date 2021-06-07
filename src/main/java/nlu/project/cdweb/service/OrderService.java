@@ -15,10 +15,10 @@ public interface OrderService {
 class OrderServiceImpl implements OrderService{
 
 	@Autowired
-	private OrderRepository OrderRepository;
+	private OrderRepository orderRepository;
 	
 	@Override
 	public List<Order> list() {
-		return OrderRepository.findAll();
+		return orderRepository.findAll();
 	}
 }

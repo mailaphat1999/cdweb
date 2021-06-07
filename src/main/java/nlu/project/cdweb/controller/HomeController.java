@@ -2,6 +2,7 @@ package nlu.project.cdweb.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import nlu.project.cdweb.service.*;
 import nlu.project.cdweb.entity.*;
@@ -35,9 +36,11 @@ public class HomeController {
 	SaleService saleService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	PriceService priceService;
 	
 	@RequestMapping(value = "/",method = RequestMethod.GET)
-	public String index(HttpServletRequest request) {
+	public String index(HttpServletRequest request, HttpSession session) {
 //		System.out.println("banner: "+bannerService.carousel());
 //		System.out.println("battery: "+batteryService.list());
 //		System.out.println("brand: "+brandService.list());
@@ -48,7 +51,13 @@ public class HomeController {
 //		System.out.println("rom: "+romService.list());
 //		System.out.println("sale: "+saleService.list());
 //		System.out.println("user: "+userService.list());
+//		System.out.println("user: "+userService.list());
+//		System.out.println("price: "+priceService.list());
 //		System.out.println("index");
+		
+//		Cart cart = CartController.getCart(session);
+//		System.out.println(cart.get("1").getPrice());
+		// ${sessionScope.currentUser}
 
 		return "index";
 	}

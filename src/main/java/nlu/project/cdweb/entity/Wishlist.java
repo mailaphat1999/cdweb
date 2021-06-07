@@ -10,19 +10,22 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "yeuthich")
+
 public class Wishlist {
     @Id
     @Column(name = "idlove")
     private String id;
-    @Column(name = "idsp")
-    private String idProduct;
 
     @ManyToOne
     @JoinColumn(name="iduser", nullable=false)
     private User wishlist;
 
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Product item;
+
     @Override
     public String toString() {
-        return String.format("Wishlist (id=%s, idProduct=%s)", this.id, this.idProduct);
+        return String.format("Wishlist (id=%s)", this.id);
     }
 }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("SELECT p FROM Product p WHERE p.status = ?1 ")
     List<Product> homeProducts(String status,Pageable pageable);
+    @Query("SELECT p FROM Product p WHERE p.price > ?1 and p.price < ?2")
+    List<Product> priceProducts(int start,int end);
 }

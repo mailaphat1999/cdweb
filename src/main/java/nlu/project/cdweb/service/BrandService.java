@@ -15,10 +15,10 @@ public interface BrandService {
 class BrandServiceImpl implements BrandService{
 
 	@Autowired
-	private BrandRepository BrandRepository;
+	private BrandRepository brandRepository;
 	
 	@Override
 	public List<Brand> list() {
-		return BrandRepository.findAll();
+		return brandRepository.findAll();
 	}
 }

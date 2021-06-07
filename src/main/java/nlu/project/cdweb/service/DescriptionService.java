@@ -15,10 +15,10 @@ public interface DescriptionService {
 class DescriptionServiceImpl implements DescriptionService{
 
 	@Autowired
-	private DescriptionRepository DescriptionRepository;
+	private DescriptionRepository descriptionRepository;
 	
 	@Override
 	public List<Description> list() {
-		return DescriptionRepository.findAll();
+		return descriptionRepository.findAll();
 	}
 }

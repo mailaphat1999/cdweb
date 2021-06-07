@@ -15,10 +15,10 @@ public interface RomService {
 class RomServiceImpl implements RomService{
 
 	@Autowired
-	private RomRepository RomRepository;
+	private RomRepository romRepository;
 
 	@Override
 	public List<Rom> list() {
-		return RomRepository.findAll();
+		return romRepository.findAll();
 	}
 }

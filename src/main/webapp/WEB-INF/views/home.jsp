@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Elite Shoppy</title>
+    <title>Home</title>
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -290,7 +290,7 @@
 </div>
 
 <!-- footer -->
-<!--<jsp:include page=""/> -->
+<%@ include file="footer.jsp" %>
 <!-- //footer -->
 <script type="text/javascript" src="./js/jquery-2.1.4.min.js"></script>
 <!-- for bootstrap working -->

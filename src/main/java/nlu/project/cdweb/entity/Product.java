@@ -5,12 +5,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter @Setter @NoArgsConstructor
 
 @Entity
 @Table(name = "sanpham")
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idsp")
@@ -63,6 +64,11 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="idkm", nullable=false)
     private Sale sale;
+
+    @OneToOne(mappedBy="item")
+    private Wishlist wishlist;
+    @OneToOne(mappedBy="item")
+    private OrderDetail orderDetail;
 
     public String getPriceFormat(){
         return String.format("%,d", this.price) +"đ";

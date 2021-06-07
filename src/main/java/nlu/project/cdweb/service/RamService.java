@@ -15,10 +15,10 @@ public interface RamService {
 class RamServiceImpl implements RamService{
 
 	@Autowired
-	private RamRepository RamRepository;
+	private RamRepository ramRepository;
 	
 	@Override
 	public List<Ram> list() {
-		return RamRepository.findAll();
+		return ramRepository.findAll();
 	}
 }

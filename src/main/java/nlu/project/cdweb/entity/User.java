@@ -43,11 +43,26 @@ public class User {
     private String active;
 	@Column(name = "ngaysuacuoi")
     private String lastChange;
+	@Column(name = "ngaytao")
+    private String dateCreate;
 
     @OneToMany(mappedBy="wishlist")
     private Set<Wishlist> wishLists;
     @OneToMany(mappedBy="order")
     private Set<Order> orders;
+
+    @Transient
+    private int totalBuy = 0;
+
+    public void updateTotalBuy(){
+        for (Order order: orders) {
+            if(order.getStatus().equals("3")) {
+                for (OrderDetail orderDetail : order.getItems()) {
+                    this.totalBuy+= orderDetail.getAmount();
+                }
+            }
+        }
+    }
 
     @Override
     public String toString() {

@@ -19,15 +19,15 @@ public interface BannerService {
 class BannerServiceImpl implements BannerService{
 
 	@Autowired
-	private BannerRepository BannerRepository;
+	private BannerRepository bannerRepository;
 	
 	@Override
-	public List<Banner> list() { return BannerRepository.findAll(); }
+	public List<Banner> list() { return bannerRepository.findAll(); }
 
 	@Override
-	public List<Banner> carousel() { return BannerRepository.carousel("carousel", Config.orderByIdAsc()); }
+	public List<Banner> carousel() { return bannerRepository.banner("carousel", Config.orderByIdAsc()); }
 	@Override
-	public List<Banner> bottom() { return BannerRepository.carousel("bottom", Config.orderByIdAsc()); }
+	public List<Banner> bottom() { return bannerRepository.banner("bottom", Config.orderByIdAsc()); }
 	@Override
-	public List<Banner> foot() { return BannerRepository.carousel("foot", Config.orderByIdAsc()); }
+	public List<Banner> foot() { return bannerRepository.banner("foot", Config.orderByIdAsc()); }
 }
