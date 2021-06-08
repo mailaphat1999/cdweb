@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "donhang")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddonhang")
     private String id;
     @Column(name = "idtinhtrang")

@@ -13,6 +13,7 @@ import java.util.List;
 @Table(name = "gia")
 public class Price {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idtgia")
     private String id;
     @Column(name = "start")

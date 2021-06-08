@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "pin")
 public class Battery {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpin")
     private String id;
     @Column(name = "dungluong")

@@ -82,7 +82,6 @@ public class Cart {
     public int size() {
         return details.size();
     }
-
     public HashMap<String, CartDetail> getDetails() {
         return details;
     }

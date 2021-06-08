@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "slide")
 public class Banner {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idslide")
     private String id;
     @Column(name = "srcslide")

@@ -13,6 +13,7 @@ import javax.persistence.*;
 
 public class Wishlist {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idlove")
     private String id;
 

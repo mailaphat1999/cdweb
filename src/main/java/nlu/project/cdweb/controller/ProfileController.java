@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 
@@ -21,11 +22,12 @@ public class ProfileController {
 	UserService userService;
 
 	@RequestMapping(value = "/profile",method = RequestMethod.GET)
-	public String listProducts(HttpServletRequest request,Model model) {
+	public String listProducts(HttpSession session, Model model) {
 		Optional<User> resultUser = userService.findByID("1");
 		User user = resultUser.get();
 		user.updateTotalBuy();
 		model.addAttribute("user",user);
+		session.setAttribute("user",user);
 		return "profile";
 	}
 

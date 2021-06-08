@@ -17,4 +17,5 @@ public class Config {
     public static Pageable homeProducts(Sort sort){
         return PageRequest.of(0, HOMEITEMS,sort);
     }
+
 }

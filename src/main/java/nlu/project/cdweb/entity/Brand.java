@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "hang")
 public class Brand {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idhang")
     private String id;
     @Column(name = "tenhang")

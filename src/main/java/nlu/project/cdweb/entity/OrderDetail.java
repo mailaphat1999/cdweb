@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @Table(name = "chitietdonhang")
 public class OrderDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idchitiet")
     private String id;
     @Column(name = "idsp")

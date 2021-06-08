@@ -28,10 +28,7 @@
     <div class="row">
         <div class="col-md-12">
             <table class="table table-hover">
-                <%
-                    Cart cart = (Cart) session.getAttribute("cart");
-                    if (cart.size()<1){
-                %>
+<c:if test="${cart.size() lt 1}">
                 <div class="container-fluid mt-100" style="margin: 10vw 0px;">
                     <div class="row">
                         <div class="col-md-12">
@@ -46,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <%}else{%>
+</c:if>
                 <table class="table table-image">
                     <thead>
                     <tr>
@@ -90,9 +87,8 @@
                     <h3>Total: <div id="carttotal" style="float: right;margin-bottom: 8px" class="price text-success"><b>${cart.updateTotal()+10000}</b></div></h3>
                     <br/>
                     <a type="button" onclick="clear();"  class="btn btn-warning">Clear Cart</a>
-                    <a type="button" style="float: right;" href="${pageContext.request.contextPath}/checkout" class="btn btn-success">Check Out</a>
+                    <a type="button" style="float: right;" href="${pageContext.request.contextPath}/order" class="btn btn-success">Check Out</a>
                 </div>
-                <%}%>
             </table>
         </div>
     </div>
