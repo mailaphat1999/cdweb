@@ -19,7 +19,7 @@
 </head>
 <body>
 <!-- header -->
-<%--<jsp:include page="header.jsp"/>--%>
+<jsp:include page="header.jsp"/>
 <!-- //header -->
 
 <!-- banner -->
@@ -51,7 +51,7 @@
 	                                    background-size:cover;'>
                 <div class="container">
                     <div class="carousel-caption">
-<%--                        <h3>The Biggest <span>Sale</span></h3><p>Special for today</p><a class="hvr-outline-out button2" href="mens.html">Shop Now </a>--%>
+                        <h3>The Biggest <span>Sale</span></h3><p>Special for today</p><a class="hvr-outline-out button2" href="/product">Shop Now </a>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                         background-size:cover;'>
                     <div class="container">
                         <div class="carousel-caption">
-                                <%--                        <h3>The Biggest <span>Sale</span></h3><p>Special for today</p><a class="hvr-outline-out button2" href="mens.html">Shop Now </a>--%>
+                              <h3>The Biggest <span>Sale</span></h3><p>Special for today</p><a class="hvr-outline-out button2" href="/product">Shop Now </a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                                 <img src="${product.image2}"  class="pro-image-back">
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
-                                        <a href="" class="link-product-add-cart">Quick View</a>
+                                        <a href="/product/detail?id=${product.id}" class="link-product-add-cart">Quick View</a>
                                     </div>
                                 </div>
                                 <span class="product-new-top">New</span>
@@ -159,8 +159,8 @@
                     </div>
                     </c:forEach>
                     <div class="col-md-12">
-                        <button class="btn btn-success moreproduct" onclick="" type="button">
-                            View More Product</button>
+                        <a class="btn btn-success moreproduct" href="/product?status=3" type="button">
+                            View More Product</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -176,14 +176,14 @@
                                     <img src="${product.image2}"  class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
-                                            <a href="" class="link-product-add-cart">Quick View</a>
+                                            <a href="/product/detail?id=${product.id}" class="link-product-add-cart">Quick View</a>
                                         </div>
                                     </div>
                                     <span class="product-new-top">Hot</span>
                                 </div>
                                 <div class="item-info-product" style="margin-top:-9px">
 
-                                    <h4><a href="detail?id=">${product.name}</a></h4>
+                                    <h4><a href="/product/detail?id=${product.id}">${product.name}</a></h4>
                                     <div class="info-product-price">
                                         <span class="item_price">${product.priceFormat}</span>
                                     </div>
@@ -197,8 +197,8 @@
                         </div>
                     </c:forEach>
                     <div class="col-md-12">
-                        <button class="btn btn-success moreproduct" onclick="" type="button">
-                            View More Product</button>
+                        <a class="btn btn-success moreproduct" href="/product?status=1" type="button">
+                            View More Product</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -213,14 +213,14 @@
                                     <img src="${product.image2}"  class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
-                                            <a href="" class="link-product-add-cart">Quick View</a>
+                                            <a href="/product/detail?id=${product.id}" class="link-product-add-cart">Quick View</a>
                                         </div>
                                     </div>
                                     <span class="product-new-top">Sale</span>
                                 </div>
                                 <div class="item-info-product" style="margin-top:-9px">
 
-                                    <h4><a href="detail?id=">${product.name}</a></h4>
+                                    <h4><a href="/product/detail?id=${product.id}">${product.name}</a></h4>
                                     <div class="info-product-price">
                                         <span class="item_price">${product.priceFormat}</span>
                                     </div>
@@ -234,8 +234,8 @@
                         </div>
                     </c:forEach>
                     <div class="col-md-12">
-                        <button class="btn btn-success moreproduct" onclick="location.href='product?status=3'" type="button">
-                            View More Product</button>
+                        <a class="btn btn-success moreproduct" href="/product?status=2" type="button">
+                            View More Product</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -249,13 +249,13 @@
                                     <img src="${product.image2}"  class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
-                                            <a href="" class="link-product-add-cart">Quick View</a>
+                                            <a href="/product/detail?id=${product.id}" class="link-product-add-cart">Quick View</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="item-info-product" style="margin-top:-9px">
 
-                                    <h4><a href="detail?id=">${product.name}</a></h4>
+                                    <h4><a href="/product/detail?id=${product.id}">${product.name}</a></h4>
                                     <div class="info-product-price">
                                         <span class="item_price">${product.priceFormat}</span>
                                     </div>
@@ -269,8 +269,8 @@
                         </div>
                     </c:forEach>
                     <div class="col-md-12">
-                        <button class="btn btn-success moreproduct" onclick="location.href='product?status=0'" type="button">
-                            View More Product</button>
+                        <a class="btn btn-success moreproduct" href="/product?status=0" type="button">
+                            View More Product</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -285,7 +285,7 @@
     <div class="container">
         <h6 style="color: black">We Offer Flat 40% Discount</h6>
 
-        <a class="hvr-outline-out button2" href="product">Shop Now </a>
+        <a class="hvr-outline-out button2" href="/product">Shop Now </a>
     </div>
 </div>
 

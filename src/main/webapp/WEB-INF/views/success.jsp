@@ -1,4 +1,3 @@
-<%@ page import="java.util.HashMap" %>
 <%@ page import="nlu.project.cdweb.entity.Cart" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

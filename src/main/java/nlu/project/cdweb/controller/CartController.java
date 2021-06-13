@@ -30,11 +30,7 @@ public class CartController {
 
     @RequestMapping("cart")
     public String viewCart(HttpSession session,Model model) {
-        if (session.getAttribute("cart") == null) {
-            cart = new Cart();
-            session.setAttribute("cart", cart);
-        } else cart = (Cart) session.getAttribute("cart");
-        model.addAttribute("cart",cart);
+        DuplicateCode.setCartAndUser(session,model);
        return "cart";
     }
 

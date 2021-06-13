@@ -19,7 +19,7 @@
 </head>
 <body>
 <!-- header -->
-<%--<jsp:include page="header.jsp"/>--%>
+<jsp:include page="header.jsp"/>
 <!-- //header -->
 
 <div class="container">
@@ -31,7 +31,7 @@
                     <div class="filter-content">
                         <div class="list-group list-group-flush">
                             <c:forEach var="data" items="${brand}">
-                                <a href="" class="list-group-item"> <c:out value="${data.name}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
+                                <a href="/product?brand=${data.id}" class="list-group-item"> <c:out value="${data.name}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
                             </c:forEach>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="filter-content">
                         <div class="list-group list-group-flush">
                             <c:forEach var="data" items="${ram}">
-                                <a href="" class="list-group-item"> <c:out value="${data.content}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
+                                <a href="/product?ram=${data.id}" class="list-group-item"> <c:out value="${data.content}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
                             </c:forEach>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="filter-content">
                         <div class="list-group list-group-flush">
                             <c:forEach var="data" items="${rom}">
-                                <a href="" class="list-group-item"> <c:out value="${data.content}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
+                                <a href="/product?rom=${data.id}" class="list-group-item"> <c:out value="${data.content}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
                             </c:forEach>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="filter-content">
                         <div class="list-group list-group-flush">
                             <c:forEach var="data" items="${battery}">
-                                <a href="" class="list-group-item"> <c:out value="${data.content}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
+                                <a href="/product?battery=${data.id}" class="list-group-item"> <c:out value="${data.content}"/> <span class="float-right badge badge-light round"><c:out value="${data.items.size()}"/></span> </a>
                             </c:forEach>
                         </div>
                     </div>
@@ -80,10 +80,10 @@
                         <div class="list-group list-group-flush">
                             <c:forEach var="data" items="${price}">
                                 <c:if test = "${data.end > data.start}">
-                                    <a href="" class="list-group-item"> <c:out value="${data.start}"/>đ to <c:out value="${data.end}"/>đ <span class="float-right badge badge-light round">${data.items.size()}</span> </a>
+                                    <a href="/product?price=${data.id}" class="list-group-item"> <c:out value="${data.start}"/>đ to <c:out value="${data.end}"/>đ <span class="float-right badge badge-light round">${data.items.size()}</span> </a>
                                 </c:if>
                                 <c:if test = "${data.end < data.start}">
-                                    <a href="" class="list-group-item"> <c:out value="${data.start}"/>đ and above <span class="float-right badge badge-light round">${data.items.size()}</span> </a>
+                                    <a href="/product?price=${data.id}" class="list-group-item"> <c:out value="${data.start}"/>đ and above <span class="float-right badge badge-light round">${data.items.size()}</span> </a>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -92,42 +92,81 @@
             </div>
         </div>
         <div class="col-md-9">
+            <c:forEach var="product" items="${listProduct}">
             <div class="col-md-4 col-sm-6">
                 <div class="product-grid2">
                     <div class="product-image2">
-                        <a href="">
-                            <img class="pic-1" src="">
-                            <img class="pic-2" src="">
+                        <a href="/product/detail?id=${product.id}">
+                            <img class="pic-1" src="${product.image1}">
+                            <img class="pic-2" src="${product.image2}">
                         </a>
                         <ul class="social">
-                            <li><a href="" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                            <li><a href="/product/detail?id=${product.id}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                             <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                             <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-
                         </ul>
                     </div>
                     <div class="product-content">
-                        <h3 class="title"><a href=""></a></h3>
-                        <span class="price">VNĐ</span>
+                        <h3 style="height: 36px;" class="title"><a  href="/product/detail?id=${product.id}">${product.name}</a></h3>
+                        <span class="price">${product.priceFormat} VNĐ</span>
                     </div>
                 </div>
             </div>
-
+            </c:forEach>
             <nav class="col-md-12" aria-label="" style="text-align: center;">
                 <ul class="pagination text-center" style="width:auto">
-
+                    <%
+                        boolean firstPara = false;
+                        if (request.getParameter("ram") != null) firstPara = true;
+                        if (request.getParameter("rom") != null) firstPara = true;
+                        if (request.getParameter("battery") != null) firstPara = true;
+                        if (request.getParameter("brand") != null) firstPara = true;
+                        if (request.getParameter("price") != null) firstPara = true;
+                        if(firstPara){
+                    %>
                     <li class="page-item">
-                        <a class="page-link" href="" aria-label="Previous">
+                        <a class="page-link" href="/product${parameter}&page=${currentPage-1 gt 1? currentPage-1: 1}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="">1</a></li>
-                    <li class="page-item"><a class="page-link" href="">2</a></li>
+                    <c:forEach begin="1" end="${maxPage}" var="val">
+                        <c:if test="${val eq currentPage}">
+                        <li class="page-item"><a style="color: darkgray" class="page-link" href="/product${parameter}&page=${val}">${val}</a></li>
+                         </c:if>
+                        <c:if test="${val ne currentPage}">
+                        <li class="page-item"><a class="page-link" href="/product${parameter}&page=${val}">${val}</a></li>
+                        </c:if>
+                    </c:forEach>
+
                     <li class="page-item">
-                        <a class="page-link" href="" aria-label="Next">
+                        <a class="page-link" href="/product${parameter}&page=${currentPage+1 gt maxPage? maxPage: currentPage+1}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
+
+                    <%}else{%>
+                    <li class="page-item">
+                        <a class="page-link" href="/product${parameter}?page=${currentPage-1 gt 1? currentPage-1: 1}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <c:forEach begin="1" end="${maxPage}" var="val">
+                        <c:if test="${val eq currentPage}">
+                            <li class="page-item"><a style="color: darkgray" class="page-link" href="/product${parameter}?page=${val}">${val}</a></li>
+                        </c:if>
+                        <c:if test="${val ne currentPage}">
+                            <li class="page-item"><a class="page-link" href="/product${parameter}?page=${val}">${val}</a></li>
+                        </c:if>
+                    </c:forEach>
+
+                    <li class="page-item">
+                        <a class="page-link" href="/product${parameter}?page=${currentPage+1 gt maxPage? maxPage: currentPage+1}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+
+
+                    <%}%>
                 </ul>
             </nav>
         </div>

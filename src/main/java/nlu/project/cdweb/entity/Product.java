@@ -3,6 +3,7 @@ package nlu.project.cdweb.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "sanpham")
 public class Product implements Serializable {
-    @Id
+    @Id @NaturalId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idsp")
     private String id;
@@ -65,9 +66,11 @@ public class Product implements Serializable {
     @JoinColumn(name="idkm", nullable=false)
     private Sale sale;
 
-    @OneToOne(mappedBy="item")
+    @OneToOne
+    @JoinColumn(name = "idsp",referencedColumnName ="idsp")
     private Wishlist wishlist;
-    @OneToOne(mappedBy="item")
+    @OneToOne
+    @JoinColumn(name = "idsp",referencedColumnName ="idsp")
     private OrderDetail orderDetail;
 
     public String getPriceFormat(){

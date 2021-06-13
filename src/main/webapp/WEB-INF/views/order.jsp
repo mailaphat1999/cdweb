@@ -21,7 +21,7 @@
 </head>
 <body>
 <!-- header -->
-<%--<jsp:include page="header.jsp"/>--%>
+<jsp:include page="header.jsp"/>
 <!-- //header -->
 
 <c:if test="${user eq null}">
@@ -60,7 +60,7 @@
                                             class="img-fluid mb-4 mr-3">
                                         <h3><strong>Your Cart is Empty</strong></h3>
                                         <h4>Add something to make me happy :)</h4> <a
-                                                href="${pageContext.request.contextPath}/product"
+                                                href="/product"
                                                 class="btn btn-success cart-btn-transform m-3" data-abc="true">continue
                                             shopping</a>
                                     </div>
@@ -75,7 +75,7 @@
                 <div class="col-md-6">
                     <div class="left--content border">
                         <div class="row"><h2>Payment</h2></div>
-                        <form id="customform" action="" method="post"
+                        <form id="customform" action="/order/checkout" method="post"
                               style="max-width: 89%;">
                             <div class="row">
                                 <div class="col-4">
@@ -89,9 +89,6 @@
                                     <span class="mycustomspan">Address:</span> <textarea name="address" cols="52"
                                                                                          rows="5"
                                                                                          placeholder="Address">${user.address}</textarea>
-                                    <span class="mycustomspan">Email:</span> <input name="email" class="inputcustom"
-                                                                                    placeholder="Email"
-                                                                                    value="${user.email}">
                                 </div>
                                 <div class="col-4"></div>
                             </div>

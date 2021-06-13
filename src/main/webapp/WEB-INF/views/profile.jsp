@@ -20,7 +20,7 @@
 </head>
 <body>
 <!-- header -->
-<%--<jsp:include page="header.jsp"/>--%>
+<jsp:include page="header.jsp"/>
 <!-- //header -->
 
 <div class="container bootstrap snippet" style="margin-top: 8vh;margin-bottom: 5vh">
@@ -213,7 +213,7 @@
                                                             height="130"
                                                             class="img-fluid mb-4 mr-3">
                                                         <h3><strong>Your Wish List is Empty</strong></h3>
-                                                        <h4>Add something save it in your profile</h4> <a href=""
+                                                        <h4>Add something save it in your profile</h4> <a href="/product"
                                                                                                           class="btn btn-success cart-btn-transform m-3"
                                                                                                           data-abc="true">continue
                                                             shopping</a>
@@ -240,13 +240,13 @@
                                     <c:forEach var="wishlist" items="${user.wishLists}">
                                         <tr>
                                             <td>
-                                                <a href="">
+                                                <a href="/product/detail?id=${wishlist.item.id}">
                                                     <div class="product-item">
                                                         <img class="col-md-4" src="${wishlist.item.image}"
                                                              alt="Product"/>
                                                         <div class="product-info col-md-8"
                                                              style="margin-top: 5%;text-align: center">
-                                                            <a href="">
+                                                            <a href="/product/detail?id=${wishlist.item.id}">
                                                                 <h4 class="product-title">${wishlist.item.name}</h4>
                                                                 <div class="text-lg text-medium text-muted">${wishlist.item.price}</div>
                                                             </a>

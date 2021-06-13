@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 
 
 public class Config {
+    public static final String HOST = "http://localhost:8080/";
     public static final int LISTPRODUCT = 18;
     public static final int COMMENTITEMS = 10;
     public static final int HOMEITEMS = 16;

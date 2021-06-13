@@ -5582,10 +5582,10 @@ p.w3ls_para {
 .product-grid2:hover .add-to-cart{bottom:0}
 .product-grid2 .product-new-label{background-color:#3498db;color:#fff;font-size:17px;padding:5px 10px;position:absolute;right:0;top:0;transition:all .3s}
 .product-grid2:hover .product-new-label{opacity:0}
-.product-grid2 .product-content{padding:20px 10px;text-align:center}
-.product-grid2 .title{font-size:17px;margin:0 0 7px}
-.product-grid2 .title a{color:#303030}
-.product-grid2 .title a:hover{color:#3498db}
+.product-grid2 .product-content{padding:10px;text-align:center}
+.product-grid2 .title{font-size:17px;margin:0 0 7px;}
+.product-grid2 .title a{color:#303030;}
+.product-grid2 .title a:hover{color:#3498db;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
 .product-grid2 .price{color:#303030;font-size:15px}
 @media screen and (max-width:990px){.product-grid2{margin-bottom:30px}
 }

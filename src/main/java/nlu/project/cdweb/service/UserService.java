@@ -13,6 +13,9 @@ public interface UserService {
 	List<User> list();
 	long count();
 	Optional<User> findByID(String id);
+	User login(String username,String password);
+	void save(User user);
+	void active(String email);
 }
 @Service
 class UserServiceImpl implements UserService{
@@ -29,5 +32,18 @@ class UserServiceImpl implements UserService{
 	@Override
 	public Optional<User> findByID(String id) {
 		return userRepository.findById(id);
+	}
+	@Override
+	public User login(String username,String password) {
+		User user = userRepository.login(username, password);
+		return user;
+	}
+
+	@Override
+	public void save(User user) { userRepository.save(user); }
+
+	@Override
+	public void active(String email) {
+		userRepository.active(email);
 	}
 }

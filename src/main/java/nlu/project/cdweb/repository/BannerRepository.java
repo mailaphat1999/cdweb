@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BannerRepository extends JpaRepository<Banner, Integer> {
+public interface BannerRepository extends JpaRepository<Banner, String> {
     @Query("SELECT b FROM Banner b WHERE b.location = ?1 ")
     List<Banner> banner(String location, Sort orders);
 }

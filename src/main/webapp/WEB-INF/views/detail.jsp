@@ -20,7 +20,7 @@
 </head>
 <body>
 <!-- header -->
-<%--<jsp:include page="header.jsp"/>--%>
+<jsp:include page="header.jsp"/>
 <!-- //header -->
 
 
@@ -226,7 +226,7 @@
                             </div>
                         </div>
                         <div class="item-info-product ">
-                            <h4><a href="">${related.get(loop.end - i + loop.begin).name}</a></h4>
+                            <h4><a href="/product/detail?id=${related.get(loop.end - i + loop.begin).id}">${related.get(loop.end - i + loop.begin).name}</a></h4>
                             <div class="info-product-price">
                                 <span class="item_price">${related.get(loop.end - i + loop.begin).priceFormat}</span>
                             </div>

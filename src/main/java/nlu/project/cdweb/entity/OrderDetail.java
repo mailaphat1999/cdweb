@@ -31,8 +31,13 @@ public class OrderDetail {
     @JoinColumn(name="iddonhang", nullable=false)
     private Order order;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "idsp",
+            referencedColumnName = "idsp",
+            updatable = false,
+            insertable = false
+    )
     private Product item;
 
     public void updateTotal(){

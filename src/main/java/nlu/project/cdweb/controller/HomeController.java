@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import nlu.project.cdweb.service.*;
-import nlu.project.cdweb.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,31 +38,9 @@ public class HomeController {
 	@Autowired
 	PriceService priceService;
 	
-	@RequestMapping(value = "/",method = RequestMethod.GET)
-	public String index(HttpServletRequest request, HttpSession session) {
-//		System.out.println("banner: "+bannerService.carousel());
-//		System.out.println("battery: "+batteryService.list());
-//		System.out.println("brand: "+brandService.list());
-//		System.out.println("orderdetail: "+orderDetailService.list());
-//		System.out.println("order: "+orderService.list());
-//		System.out.println("product: "+productService.hotProducts());
-//		System.out.println("ram: "+ramService.list());
-//		System.out.println("rom: "+romService.list());
-//		System.out.println("sale: "+saleService.list());
-//		System.out.println("user: "+userService.list());
-//		System.out.println("user: "+userService.list());
-//		System.out.println("price: "+priceService.list());
-//		System.out.println("index");
-		
-//		Cart cart = CartController.getCart(session);
-//		System.out.println(cart.get("1").getPrice());
-// 		${sessionScope.currentUser}
-
-		return "index";
-	}
-
-	@RequestMapping(value = "/home",method = RequestMethod.GET)
-	public String home(HttpServletRequest request,Model model) {
+	@RequestMapping({"/", "home"})
+	public String home(HttpSession session,Model model) {
+        model.addAttribute("brands",brandService.list());
         model.addAttribute("hotProduct",productService.hotProducts());
         model.addAttribute("newProduct",productService.newProducts());
         model.addAttribute("saleProduct",productService.saleProducts());
@@ -74,6 +51,7 @@ public class HomeController {
         model.addAttribute("countProduct",productService.count());
         model.addAttribute("countUser",userService.count());
         model.addAttribute("countSale",saleService.count());
+        DuplicateCode.setCartAndUser(session,model);
 		return "home";
 	}
 }
