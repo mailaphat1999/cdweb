@@ -20,4 +20,9 @@ public class Security {
         }
         return "";
     }
+    public static int getRandomNumber() {
+        int max = 9999999;
+        int min = 1000000;
+        return (int) ((Math.random() * (max - min)) + min);
+    }
 }

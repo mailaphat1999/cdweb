@@ -23,6 +23,5 @@ public class DuplicateCode {
             user = (User) session.getAttribute("user");
             model.addAttribute("user",user);
         }
-        model.addAttribute("user",user);
     }
 }

@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     User login(String username, String password);
     @Query("update User u set u.active = '1' WHERE u.email = ?1")
     User active(String email);
+    @Query("SELECT u FROM User u WHERE u.email = ?1 and u.active = '1'")
+    User getUserByEmail(String email);
 }

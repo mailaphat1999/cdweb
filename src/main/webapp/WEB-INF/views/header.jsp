@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header -->
 
@@ -25,6 +26,10 @@
         if (request.getParameter("price") != null) {
             if (!firstPara) {parameter += "?price=" + request.getParameter("price");firstPara = true;}
             else parameter += "&price=" + request.getParameter("price");
+        }
+        if (request.getParameter("status") != null) {
+            if (!firstPara) {parameter += "?status=" + request.getParameter("status");firstPara = true;}
+            else parameter += "&status=" + request.getParameter("status");
         }
         int savepage = 1;
         if (request.getParameter("page") != null) {
@@ -61,7 +66,7 @@
 <div class="header-bot">
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
-            <form action="#" method="post">
+            <form action="/search" method="post">
                 <input type="search" name="search" placeholder="Search here..." required="">
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
@@ -206,7 +211,7 @@
                     <div>
                         <p><a style="float: left" href="/forgetpass" data-toggle="modal" data-target="#myModal2"> Don't have an
                             account?</a></p>
-                        <p style="width: 154%"><a style="float: right" href="forgetpass.jsp">Or forget your
+                        <p style="width: 154%"><a style="float: right" href="/forgetpass">Or forget your
                             password?</a></p>
                     </div>
 

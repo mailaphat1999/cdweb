@@ -30,7 +30,7 @@ class OrderServiceImpl implements OrderService{
 		String id = rs.getId();
 		for (OrderDetail detail:order.getItems()) {
 			detail.setOrder(order);
-			orderDetailRepository.save(detail);
+			orderDetailRepository.saveAndFlush(detail);
 		}
 	}
 }

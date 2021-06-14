@@ -6,14 +6,16 @@ import nlu.project.cdweb.entity.Price;
 import nlu.project.cdweb.entity.Product;
 import nlu.project.cdweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,12 +38,8 @@ public class ListProductController {
 
 	@RequestMapping(value = "/product",method = RequestMethod.GET)
 	public String listProducts(HttpServletRequest request, HttpSession session, Model model) {
-		model.addAttribute("brand",brandService.list());
-		model.addAttribute("battery",batteryService.list());
-		model.addAttribute("ram",ramService.list());
-		model.addAttribute("rom",romService.list());
-		model.addAttribute("price",priceService.list());
-		DuplicateCode.setCartAndUser(session,model);
+		model.addAttribute("isSearch",false);
+		initLoad(session, model);
 
 		String parameter = "";boolean firstPara = false;
 		List<Product> listProduct = productService.list();
@@ -69,15 +67,34 @@ public class ListProductController {
 			listProduct = listProduct.stream().filter(product -> product.getPrice()>price.getStart() && product.getPrice()<price.getEnd()).collect(Collectors.toList());
 			else listProduct = listProduct.stream().filter(product -> product.getPrice()>price.getStart()).collect(Collectors.toList());
 		}
+		return loadProductAndPara(request, model, parameter, listProduct);
+	}
+
+	@RequestMapping(value = "/search",method = RequestMethod.POST)
+	public void search(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String search = request.getParameter("search");
+		response.sendRedirect("search?q="+URLEncoder.encode(search, "UTF-8"));
+	}
+	@RequestMapping(value = "/search",method = RequestMethod.GET)
+	public String doSearch(HttpServletRequest request, HttpSession session, Model model) {
+		model.addAttribute("isSearch",true);
+		initLoad(session, model);
+		String search = request.getParameter("q");
+		String parameter = "?q="+search;
+		List<Product> listProduct = productService.search(search);
+		return loadProductAndPara(request, model, parameter, listProduct);
+	}
+
+	private String loadProductAndPara(HttpServletRequest request, Model model, String parameter, List<Product> listProduct) {
 		int page = 1;
 		if(request.getParameter("page")!=null){
 			try{
-			page = Integer.parseInt(request.getParameter("page"));
+				page = Integer.parseInt(request.getParameter("page"));
 			}catch (NumberFormatException e){
 				page = 1;
 			}
 		}
-		int maxPage = listProduct.size()/Config.LISTPRODUCT + 1;
+		int maxPage = listProduct.size()/ Config.LISTPRODUCT + 1;
 		page = page>maxPage?maxPage:page;
 
 		model.addAttribute("parameter",parameter);
@@ -87,5 +104,12 @@ public class ListProductController {
 		return "product";
 	}
 
-	
+	private void initLoad(HttpSession session, Model model) {
+		model.addAttribute("brand",brandService.list());
+		model.addAttribute("battery",batteryService.list());
+		model.addAttribute("ram",ramService.list());
+		model.addAttribute("rom",romService.list());
+		model.addAttribute("price",priceService.list());
+		DuplicateCode.setCartAndUser(session,model);
+	}
 }

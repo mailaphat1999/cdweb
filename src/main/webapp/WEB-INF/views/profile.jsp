@@ -63,7 +63,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="col-md-12">
-                                        <form action="" method="post">
+                                        <form action="/profile/update" method="post">
                                             <div class="form-group row">
                                                 <label for="username" class="col-4 col-form-label">Name*</label>
                                                 <div class="col-8">
@@ -85,6 +85,15 @@
                                                 <div class="col-8">
                                                     <input id="phone" name="phone" placeholder="Phone"
                                                            class="form-control here" value="${user.phone}"
+                                                           required="required"
+                                                           type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="username" class="col-4 col-form-label">Gender</label>
+                                                <div class="col-8">
+                                                    <input id="gender" name="gender" placeholder="Gender"
+                                                           class="form-control here" value="${user.gender}"
                                                            required="required"
                                                            type="text">
                                                 </div>

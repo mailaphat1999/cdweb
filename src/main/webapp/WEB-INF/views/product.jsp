@@ -115,6 +115,7 @@
             </c:forEach>
             <nav class="col-md-12" aria-label="" style="text-align: center;">
                 <ul class="pagination text-center" style="width:auto">
+                    <c:if test="${isSearch eq false}">
                     <%
                         boolean firstPara = false;
                         if (request.getParameter("ram") != null) firstPara = true;
@@ -137,13 +138,11 @@
                         <li class="page-item"><a class="page-link" href="/product${parameter}&page=${val}">${val}</a></li>
                         </c:if>
                     </c:forEach>
-
                     <li class="page-item">
                         <a class="page-link" href="/product${parameter}&page=${currentPage+1 gt maxPage? maxPage: currentPage+1}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
-
                     <%}else{%>
                     <li class="page-item">
                         <a class="page-link" href="/product${parameter}?page=${currentPage-1 gt 1? currentPage-1: 1}" aria-label="Previous">
@@ -158,15 +157,33 @@
                             <li class="page-item"><a class="page-link" href="/product${parameter}?page=${val}">${val}</a></li>
                         </c:if>
                     </c:forEach>
-
                     <li class="page-item">
                         <a class="page-link" href="/product${parameter}?page=${currentPage+1 gt maxPage? maxPage: currentPage+1}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
-
-
                     <%}%>
+                    </c:if>
+                    <c:if test="${isSearch eq true}">
+                        <li class="page-item">
+                            <a class="page-link" href="/search${parameter}&page=${currentPage-1 gt 1? currentPage-1: 1}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <c:forEach begin="1" end="${maxPage}" var="val">
+                            <c:if test="${val eq currentPage}">
+                                <li class="page-item"><a style="color: darkgray" class="page-link" href="/search${parameter}&page=${val}">${val}</a></li>
+                            </c:if>
+                            <c:if test="${val ne currentPage}">
+                                <li class="page-item"><a class="page-link" href="/search${parameter}&page=${val}">${val}</a></li>
+                            </c:if>
+                        </c:forEach>
+                        <li class="page-item">
+                            <a class="page-link" href="/product${parameter}&page=${currentPage+1 gt maxPage? maxPage: currentPage+1}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
                 </ul>
             </nav>
         </div>
