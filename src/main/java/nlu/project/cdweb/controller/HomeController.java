@@ -1,6 +1,5 @@
 package nlu.project.cdweb.controller;
 
-
 import javax.servlet.http.HttpSession;
 
 import nlu.project.cdweb.service.*;
@@ -8,48 +7,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
 public class HomeController {
-
-	@Autowired
-	BannerService bannerService;
-	@Autowired
-	BatteryService batteryService;
 	@Autowired
 	BrandService brandService;
 	@Autowired
-	OrderDetailService orderDetailService;
-	@Autowired
-	OrderService orderService;
-	@Autowired
 	ProductService productService;
 	@Autowired
-	RamService ramService;
-	@Autowired
-	RomService romService;
+	BannerService bannerService;
 	@Autowired
 	SaleService saleService;
 	@Autowired
 	UserService userService;
-	@Autowired
-	PriceService priceService;
-	
+
 	@RequestMapping({"/", "home"})
-	public String home(HttpSession session,Model model) {
-        model.addAttribute("brands",brandService.list());
-        model.addAttribute("hotProduct",productService.hotProducts());
-        model.addAttribute("newProduct",productService.newProducts());
-        model.addAttribute("saleProduct",productService.saleProducts());
-        model.addAttribute("otherProduct",productService.otherProducts());
-        model.addAttribute("carousel",bannerService.carousel());
-        model.addAttribute("bottom",bannerService.bottom());
-        model.addAttribute("foot",bannerService.foot());
-        model.addAttribute("countProduct",productService.count());
-        model.addAttribute("countUser",userService.count());
-        model.addAttribute("countSale",saleService.count());
-        DuplicateCode.setCartAndUser(session,model);
-		return "home";
+	public ModelAndView home(HttpSession session,Model model) {
+		ModelAndView mav = new ModelAndView("home");
+		mav.addObject("brands",brandService.list());
+		mav.addObject("hotProduct",productService.hotProducts());
+		mav.addObject("newProduct",productService.newProducts());
+		mav.addObject("saleProduct",productService.saleProducts());
+		mav.addObject("otherProduct",productService.otherProducts());
+		mav.addObject("carousel",bannerService.carousel());
+		mav.addObject("bottom",bannerService.bottom());
+		mav.addObject("foot",bannerService.foot());
+		mav.addObject("countProduct",productService.count());
+		mav.addObject("countUser",userService.count());
+		mav.addObject("countSale",saleService.count());
+        DuplicateCode.setCartAndUser(session,mav);
+		return mav;
 	}
 }

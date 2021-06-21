@@ -5,6 +5,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @Getter @Setter @NoArgsConstructor
 
 @Entity
+@Proxy(lazy=false)
 @Table(name = "nguoidung")
 public class User {
 	@Id
@@ -47,9 +49,9 @@ public class User {
 	@Column(name = "ngaytao")
     private String dateCreate;
 
-    @OneToMany(mappedBy="wishlist")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "wishlist", cascade = CascadeType.ALL)
     private Set<Wishlist> wishLists;
-    @OneToMany(mappedBy="order")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     private Set<Order> orders;
 
     @Transient
@@ -67,6 +69,6 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("User (id=%s, username=%s, password=%s, name=%s, image=%s, phone=%s, address=%s, email=%s, gender=%s, dob=%s, payMethod=%s, permission=%s, active=%s, lastChange=%s, wishLists=%s, orders=%s)", this.id, this.username, this.password, this.name, this.image, this.phone, this.address, this.email, this.gender, this.dob, this.payMethod, this.permission, this.active, this.lastChange, this.wishLists, this.orders);
+        return String.format("User (id=%s, username=%s, password=%s, name=%s, image=%s, phone=%s, address=%s, email=%s, gender=%s, dob=%s, payMethod=%s, permission=%s, active=%s, lastChange=%s)", this.id, this.username, this.password, this.name, this.image, this.phone, this.address, this.email, this.gender, this.dob, this.payMethod, this.permission, this.active, this.lastChange);
     }
 }

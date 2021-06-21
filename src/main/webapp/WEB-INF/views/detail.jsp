@@ -221,7 +221,7 @@
                             <img src="${pageContext.request.contextPath}/${related.get(loop.end - i + loop.begin).image2}" alt="" class="pro-image-back">
                             <div class="men-cart-pro">
                                 <div class="inner-men-cart-pro">
-                                    <a href="" class="link-product-add-cart">Quick View</a>
+                                    <a href="/product/detail?id=${related.get(loop.end - i + loop.begin).id}" class="link-product-add-cart">Quick View</a>
                                 </div>
                             </div>
                         </div>

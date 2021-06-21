@@ -3,12 +3,14 @@ package nlu.project.cdweb.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 
 @Getter @Setter @NoArgsConstructor
 
 @Entity
+@Proxy(lazy=false)
 @Table(name = "yeuthich")
 
 public class Wishlist {
@@ -21,13 +23,8 @@ public class Wishlist {
     @JoinColumn(name="iduser", nullable=false)
     private User wishlist;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "idsp",
-            referencedColumnName = "idsp",
-            updatable = false,
-            insertable = false
-    )
+    @OneToOne
+    @JoinColumn(name = "idsp", referencedColumnName = "idsp", updatable = false, insertable = false)
     private Product item;
 
     @Override

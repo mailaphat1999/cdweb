@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,12 +32,14 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/order/checkout",method = RequestMethod.POST)
-    public String checkout(HttpSession session, HttpServletRequest request) {
-        if(session.getAttribute("user") == null){return "order";}
-        if(session.getAttribute("cart") == null){return "order";}
+    public ModelAndView checkout(HttpSession session, HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
+        if(session.getAttribute("user") == null){return new ModelAndView( "redirect:"+referer);}
+        if(session.getAttribute("cart") == null){return new ModelAndView( "redirect:"+referer);}
         cart = (Cart) session.getAttribute("cart");
         user = (User) session.getAttribute("user");
-        if(cart.size()<1){return "order";}
+
+        if(cart.size()<1){return new ModelAndView( "redirect:"+referer);}
 
         Order order = setOrder(user,request);
         Set<OrderDetail> details = new HashSet<>();
@@ -47,7 +50,7 @@ public class OrderController {
         }
         order.setItems(details);
         orderService.save(order);
-        return "success";
+        return new ModelAndView("success");
     }
 
     public static Order setOrder(User user,HttpServletRequest request){

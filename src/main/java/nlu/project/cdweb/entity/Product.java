@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 @Getter @Setter @NoArgsConstructor
 
 @Entity
+@Proxy(lazy=false)
 @Table(name = "sanpham")
 public class Product implements Serializable {
     @Id @NaturalId

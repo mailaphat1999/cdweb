@@ -3,6 +3,7 @@ package nlu.project.cdweb.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 @Getter @Setter @NoArgsConstructor
 
 @Entity
+@Proxy(lazy=false)
 @Table(name = "chitietdonhang")
 public class OrderDetail {
     @Id
@@ -32,12 +34,7 @@ public class OrderDetail {
     private Order order;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "idsp",
-            referencedColumnName = "idsp",
-            updatable = false,
-            insertable = false
-    )
+    @JoinColumn(name = "idsp", referencedColumnName = "idsp", updatable = false, insertable = false)
     private Product item;
 
     public void updateTotal(){

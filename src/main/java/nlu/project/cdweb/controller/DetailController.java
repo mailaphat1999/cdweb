@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -20,13 +21,15 @@ public class DetailController {
     ProductService productService;
 
     @RequestMapping(value = "/product/detail",method = RequestMethod.GET)
-    public String detail(@RequestParam String id, Model model,HttpSession session) {
-        model.addAttribute("product",productService.findByID(id));
+    public ModelAndView detail(@RequestParam String id, Model model,HttpSession session) {
+        ModelAndView mav = new ModelAndView("detail");
+        mav.addObject("product",productService.findByID(id));
+
         List<Product> relatedProduct = new ArrayList<Product>();
         relatedProduct.addAll(productService.findByID(id).getBrand().getItems());
-        model.addAttribute("related",relatedProduct);
-        DuplicateCode.setCartAndUser(session,model);
-        return "detail";
+        mav.addObject("related",relatedProduct);
+        DuplicateCode.setCartAndUser(session,mav);
+        return mav;
     }
 
 }

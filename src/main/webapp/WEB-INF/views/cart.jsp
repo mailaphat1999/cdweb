@@ -76,7 +76,7 @@
                                                     id="input1" value="${detail.value.quatity}"></td>
                                 <td class="dataTotal">${detail.value.total}</td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/cart/remove&id=${detail.value.product.id}"
+                                    <form action="${pageContext.request.contextPath}/cart/remove?id=${detail.value.product.id}"
                                           method="post">
                                         <input type="hidden" name="locate" value="<%= request.getRequestURL() %>"/>
                                         <button type="submit" class="btn btn-danger">

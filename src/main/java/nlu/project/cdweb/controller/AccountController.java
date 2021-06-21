@@ -12,43 +12,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 
 @Controller
+@Transactional
 public class AccountController {
 
     @Autowired
     UserService userService;
 
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public void login(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ModelAndView login(HttpSession session, HttpServletRequest request){
         String username = request.getParameter("username");
         String password = Security.hashMD5(request.getParameter("password"));
-        String locate = request.getParameter("locate");
+
         if(userService.login(username,password)!=null){
             User user = userService.login(username,password);
+            user.updateTotalBuy();
             session.setAttribute("user",user);
         }
-        response.sendRedirect(locate);
+        String referer = request.getHeader("Referer");
+        return new ModelAndView( "redirect:"+referer);
     }
     @RequestMapping(value = "/logout")
-    public void logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ModelAndView logout(HttpSession session, HttpServletRequest request){
         session.setAttribute("user",null);
-        response.sendRedirect(request.getParameter("locate").replace('-','&'));
+        String referer = request.getHeader("Referer");
+        return new ModelAndView( "redirect:"+referer);
     }
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public void register(HttpServletRequest request,HttpServletResponse response) throws MessagingException, IOException {
+    public ModelAndView register(HttpServletRequest request) throws MessagingException, IOException {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = Security.hashMD5(request.getParameter("password"));
         String confirm = Security.hashMD5(request.getParameter("confirm"));
-        String locate = request.getParameter("locate");
         if(password.equals(confirm)){
             User user = new User();
             user.setEmail(email);user.setPassword(password);user.setActive("0");user.setAddress("");
@@ -61,7 +67,8 @@ public class AccountController {
             String message = "Click to link to confirm: " + Config.HOST+"verify/activeUser?email=" + email;
             SendEmail.sendEmail(email,subject,message);
         }
-        response.sendRedirect(locate);
+        String referer = request.getHeader("Referer");
+        return new ModelAndView( "redirect:"+referer);
     }
     @RequestMapping(value = "/verify/activeUser")
     public void verify(HttpServletRequest request,HttpServletResponse response) throws IOException {

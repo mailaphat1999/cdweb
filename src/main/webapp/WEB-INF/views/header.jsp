@@ -3,8 +3,6 @@
 <!-- header -->
 
 <%
-    String result = request.getRequestURI().replace("/WEB-INF/views/","").replace(".jsp","");
-    if(result.equals("product")) {
         String parameter = "";
         boolean firstPara = false;
         if (request.getParameter("ram") != null) {
@@ -41,8 +39,6 @@
             if (!firstPara) parameter += "?page=" + savepage;
             else parameter += "&page=" + savepage;
         }
-        result = result+parameter;
-    }
 %>
 
 <div class="header" id="home">
@@ -56,7 +52,7 @@
             </c:if>
             <c:if test="${user ne null}">
                 <li><a href="/profile"> <i class="fa fa-user" aria-hidden="true"></i> Welcome: ${user.name} </a></li>
-                <li><a href="/logout?locate=<%=result.replace('&','-')%>"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out </a></li>
+                <li><a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out </a></li>
             </c:if>
         </ul>
     </div>
@@ -186,7 +182,6 @@
                             <span></span>
                         </div>
 
-                        <input type="hidden" name="locate" value="<%=result%>">
                         <input type="submit" value="Sign In">
                     </form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
@@ -258,7 +253,6 @@
                             <label>Confirm Password</label>
                             <span></span>
                         </div>
-                        <input type="hidden" name="locate" value="<%=result%>">
                         <input type="submit" value="Sign Up">
                     </form>
                     <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
@@ -347,7 +341,7 @@
 
                             <tr>
                                 <td class="col-md-3">
-                                    <img src="${detail.value.product.image1}" class="img-fluid img-thumbnail"
+                                    <img src="${pageContext.request.contextPath}/${detail.value.product.image1}" class="img-fluid img-thumbnail"
                                          alt="Sheep">
                                 </td>
                                 <td>${detail.value.product.name}</td>
@@ -357,7 +351,7 @@
                                                     id="input1" value="${detail.value.quatity}"></td>
                                 <td class="dataTotal">${detail.value.total}</td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/cart/remove&id=${detail.value.product.id}"
+                                    <form action="${pageContext.request.contextPath}/cart/remove?id=${detail.value.product.id}"
                                           method="post">
                                         <input type="hidden" name="locate" value="<%= request.getRequestURL() %>"/>
                                         <button type="submit" class="btn btn-danger">
