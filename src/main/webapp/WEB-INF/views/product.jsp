@@ -102,8 +102,8 @@
                         </a>
                         <ul class="social">
                             <li><a href="/product/detail?id=${product.id}" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                            <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="/account/addWishlist?id=${product.id}" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="/cart/add?id=${product.id}" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="product-content">
@@ -246,6 +246,8 @@
     });
 </script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script type="text/javascript" src="js/myValidation/customRule.js"></script>
+<script type="text/javascript" src="js/myValidation/headerForm.js"></script>
 </body>
 </html>

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -27,20 +29,22 @@ public class CartController {
     }
 
     @RequestMapping("cart/add")
-    public void addCart(@RequestParam String id, HttpSession session) {
+    public ModelAndView addCart(@RequestParam String id, HttpSession session, HttpServletRequest request) {
         if (session.getAttribute("cart") == null) {
             cart = new Cart();
             session.setAttribute("cart", cart);
         } else cart = (Cart) session.getAttribute("cart");
 
         Product product = productService.findByID(id);
-
         cart.put(product);
         session.setAttribute("cart", cart);
+
+        String referer = request.getHeader("Referer");
+        return new ModelAndView( "redirect:"+referer);
     }
 
     @RequestMapping("cart/remove")
-    public void removeCart(@RequestParam String id, HttpSession session) {
+    public ModelAndView removeCart(@RequestParam String id, HttpSession session, HttpServletRequest request) {
         if (session.getAttribute("cart") == null) {
             cart = new Cart();
             session.setAttribute("cart", cart);
@@ -50,12 +54,9 @@ public class CartController {
 
         cart.remove(id);
         session.setAttribute("cart", cart);
-    }
 
-    @RequestMapping("cart/clear")
-    public void clearCart(HttpSession session) {
-        cart = new Cart();
-        session.setAttribute("cart", cart);
+        String referer = request.getHeader("Referer");
+        return new ModelAndView( "redirect:"+referer);
     }
 
     @RequestMapping("cart/update")
@@ -65,8 +66,8 @@ public class CartController {
             session.setAttribute("cart", cart);
         } else cart = (Cart) session.getAttribute("cart");
         session.setAttribute("cart", cart);
-    }
 
+    }
 
     public static Cart getCart(HttpSession session){
         if (session.getAttribute("cart") == null) {

@@ -24,7 +24,7 @@ public class Wishlist {
     private User wishlist;
 
     @OneToOne
-    @JoinColumn(name = "idsp", referencedColumnName = "idsp", updatable = false, insertable = false)
+    @JoinColumn(name = "idsp", referencedColumnName = "idsp")
     private Product item;
 
     @Override

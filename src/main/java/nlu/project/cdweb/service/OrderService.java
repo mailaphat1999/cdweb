@@ -12,6 +12,7 @@ import java.util.List;
 public interface OrderService {
 	List<Order> list();
 	void save(Order order);
+	void cancelOrder(String id);
 }
 
 @Service
@@ -26,11 +27,16 @@ class OrderServiceImpl implements OrderService{
 	public List<Order> list() { return orderRepository.findAll(); }
 	@Override
 	public void save(Order order) {
-		Order rs = orderRepository.saveAndFlush(order);
-		String id = rs.getId();
+		orderRepository.saveAndFlush(order);
 		for (OrderDetail detail:order.getItems()) {
 			detail.setOrder(order);
 			orderDetailRepository.saveAndFlush(detail);
 		}
 	}
+
+	@Override
+	public void cancelOrder(String id) {
+		orderRepository.cancelOrder(id);
+	}
+
 }

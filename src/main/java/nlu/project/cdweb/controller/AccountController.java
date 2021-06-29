@@ -10,6 +10,7 @@ import nlu.project.cdweb.mail.SendEmail;
 import nlu.project.cdweb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -112,6 +113,28 @@ public class AccountController {
                 response.sendRedirect("home");
             }
         } else response.sendRedirect("resetpassword");
+    }
+    @RequestMapping(value = "/account/checkExist")
+    public void checkExist(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String email = request.getParameter("email");
+        User user = userService.getUserByEmail(email);
+        try {
+            user.getEmail();
+            response.getWriter().println(true);
+        }catch (NullPointerException e){
+            response.getWriter().println(false);
+        }
+    }
+    @RequestMapping(value = "/account/checkExist2")
+    public void checkExist2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String username = request.getParameter("username");
+        User user = userService.getUserByUsername(username);
+        try {
+            user.getUsername();
+            response.getWriter().println(true);
+        }catch (NullPointerException e){
+            response.getWriter().println(false);
+        }
     }
 
 

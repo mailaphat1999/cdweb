@@ -63,7 +63,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="col-md-12">
-                                        <form action="/profile/update" method="post">
+                                        <form action="${pageContext.request.contextPath}/profile/update" id="updateProfile" method="post">
                                             <div class="form-group row">
                                                 <label for="username" class="col-4 col-form-label">Name*</label>
                                                 <div class="col-8">
@@ -153,7 +153,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="" method="post">
+                                        <form action="/profile/changePass" id="changePass" method="post">
                                             <div class="form-group row">
                                                 <label for="username" class="col-4 col-form-label">User
                                                     Name*</label>
@@ -241,7 +241,7 @@
                                         <th>
                                             <div style="margin-left: 9%;">Wish List</div>
                                         </th>
-                                        <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="">Clear
+                                        <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="/profile/clearAllWishlist">Clear
                                             Wishlist</a></th>
                                     </tr>
                                     </thead>
@@ -263,7 +263,7 @@
                                                     </div>
                                                 </a>
                                             </td>
-                                            <td class="text-center "><a class="remove-from-cart" href=""
+                                            <td class="text-center "><a class="remove-from-cart" href="/profile/clearWishlist?id=${wishlist.id}"
                                                                         data-toggle="tooltip"
                                                                         title="" data-original-title="Remove item"><i
                                                     class="fa fa-trash"></i> Remove </a></td>
@@ -307,7 +307,7 @@
                                 <c:if test="${order.status eq 1}">
                                 <div style="float: left;padding: 15px;"><a style="padding: 13px;"
                                                                            class="btn-danger"
-                                                                           href="">Cancel</a></div>
+                                                                           href="/profile/cancelOrder?id=${order.id}">Cancel</a></div>
                                 </c:if>
                                 <article class="card">
                                     <div class="card-body">
@@ -439,6 +439,12 @@
     });
 </script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script type="text/javascript" src="js/myValidation/customRule.js"></script>
+<script type="text/javascript" src="js/myValidation/headerForm.js"></script>
+<script type="text/javascript" src="js/myValidation/profileForm.js"></script>
+<style>
+    label.error{text-align: left!important;margin: 0px!important}
+</style>
 </body>
 </html>

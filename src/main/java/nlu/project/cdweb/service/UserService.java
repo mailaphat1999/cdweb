@@ -18,11 +18,13 @@ public interface UserService {
 	Optional<User> findByID(String id);
 	User login(String username,String password);
 	User getUserByEmail(String email);
+	User getUserByUsername(String username);
 	void save(User user);
 	void active(String email);
 	void addForgetPass(ForgetPass forgetPass);
 	ForgetPass getForgetPass(String id);
 	void resetPass(String email,String newpassword);
+
 }
 @Service
 class UserServiceImpl implements UserService{
@@ -60,6 +62,7 @@ class UserServiceImpl implements UserService{
 	public User getUserByEmail(String email) {
 		return userRepository.getUserByEmail(email);
 	}
+	public User getUserByUsername(String username){ return userRepository.getUserByUsername(username); }
 
 	@Override
 	public void addForgetPass(ForgetPass forgetPass) { forgetPassRepository.saveAndFlush(forgetPass); }

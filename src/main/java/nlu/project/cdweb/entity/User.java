@@ -49,9 +49,9 @@ public class User {
 	@Column(name = "ngaytao")
     private String dateCreate;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "wishlist", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "wishlist",  orphanRemoval = true)
     private Set<Wishlist> wishLists;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order",  orphanRemoval = true)
     private Set<Order> orders;
 
     @Transient

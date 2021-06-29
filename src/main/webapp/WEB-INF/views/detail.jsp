@@ -71,7 +71,7 @@
 
             <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                    <form action="" method="post">
+                    <form action="/cart/add?id=${product.id}" method="post">
                         <fieldset>
                             <input type="submit" name="submit" value="Add to cart" class="button cartbutton">
                             <span class="fa fa-shopping-cart carticondata"></span>
@@ -79,10 +79,10 @@
                     </form>
                 </div>
             </div>
-
+            <c:if test="${user ne null}">
             <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                    <form action="" method="post">
+                    <form action="/account/addWishlist?id=${product.id}" method="post">
                         <fieldset>
                             <input type="hidden" name="id" value="1">
                             <input type="submit" name="submit" value="Wishlist" class="button cartbutton">
@@ -91,6 +91,7 @@
                     </form>
                 </div>
             </div>
+            </c:if>
         </div>
         <div class="clearfix"></div>
         <!-- /new_arrivals -->
@@ -305,6 +306,8 @@
     });
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/myValidation/customRule.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/myValidation/headerForm.js"></script>
 </body>
 </html>

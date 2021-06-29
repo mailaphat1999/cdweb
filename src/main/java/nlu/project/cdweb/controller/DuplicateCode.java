@@ -1,12 +1,14 @@
 package nlu.project.cdweb.controller;
 
+import lombok.Getter;
+import lombok.Setter;
 import nlu.project.cdweb.entity.Cart;
 import nlu.project.cdweb.entity.User;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-
+@Getter @Setter
 public class DuplicateCode {
     static User user;
     static Cart cart;

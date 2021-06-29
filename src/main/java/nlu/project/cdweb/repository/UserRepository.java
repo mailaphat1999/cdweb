@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, String> {
     User active(String email);
     @Query("SELECT u FROM User u WHERE u.email = ?1 and u.active = '1'")
     User getUserByEmail(String email);
+    @Query("SELECT u FROM User u WHERE u.username = ?1 and u.active = '1'")
+    User getUserByUsername(String username);
 }

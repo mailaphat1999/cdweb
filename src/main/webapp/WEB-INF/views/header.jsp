@@ -2,45 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header -->
 
-<%
-        String parameter = "";
-        boolean firstPara = false;
-        if (request.getParameter("ram") != null) {
-            if (!firstPara) {parameter += "?ram=" + request.getParameter("ram");firstPara = true;}
-            else parameter += "&ram=" + request.getParameter("ram");
-        }
-        if (request.getParameter("rom") != null) {
-            if (!firstPara) {parameter += "?rom=" + request.getParameter("rom");firstPara = true;}
-            else parameter += "&rom=" + request.getParameter("rom");
-        }
-        if (request.getParameter("battery") != null) {
-            if (!firstPara) {parameter += "?battery=" + request.getParameter("battery");firstPara = true;}
-            else parameter += "&battery=" + request.getParameter("battery");
-        }
-        if (request.getParameter("brand") != null) {
-            if (!firstPara) {parameter += "?brand=" + request.getParameter("brand");firstPara = true;}
-            else parameter += "&brand=" + request.getParameter("brand");
-        }
-        if (request.getParameter("price") != null) {
-            if (!firstPara) {parameter += "?price=" + request.getParameter("price");firstPara = true;}
-            else parameter += "&price=" + request.getParameter("price");
-        }
-        if (request.getParameter("status") != null) {
-            if (!firstPara) {parameter += "?status=" + request.getParameter("status");firstPara = true;}
-            else parameter += "&status=" + request.getParameter("status");
-        }
-        int savepage = 1;
-        if (request.getParameter("page") != null) {
-            try {
-                savepage = Integer.parseInt(request.getParameter("page"));
-            } catch (NumberFormatException e) {
-                savepage = 1;
-            }
-            if (!firstPara) parameter += "?page=" + savepage;
-            else parameter += "&page=" + savepage;
-        }
-%>
-
 <div class="header" id="home">
     <div class="container">
         <ul>
@@ -63,7 +24,7 @@
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
             <form action="/search" method="post">
-                <input type="search" name="search" placeholder="Search here..." required="">
+                <input type="search" name="search" placeholder="Search here..." >
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
             </form>
@@ -170,14 +131,14 @@
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-                    <form action="${pageContext.request.contextPath}/login" method="post">
+                    <form id="loginForm" action="${pageContext.request.contextPath}/login" method="post">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="username" required="">
+                            <input type="text" name="username" >
                             <label>Username</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="password" required="">
+                            <input type="password" name="password" >
                             <label>Password</label>
                             <span></span>
                         </div>
@@ -204,7 +165,7 @@
                     </ul>
                     <div class="clearfix"></div>
                     <div>
-                        <p><a style="float: left" href="/forgetpass" data-toggle="modal" data-target="#myModal2"> Don't have an
+                        <p><a style="float: left" href="#myModal2" data-toggle="modal" data-target="#myModal2"> Don't have an
                             account?</a></p>
                         <p style="width: 154%"><a style="float: right" href="/forgetpass">Or forget your
                             password?</a></p>
@@ -232,24 +193,24 @@
             <div class="modal-body modal-body-sub_agile">
                 <div class="col-md-8 modal_body_left modal_body_left1">
                     <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-                    <form action="register" method="post">
+                    <form id="registerform" action="register" method="post">
                         <div class="styled-input agile-styled-input-top">
-                            <input type="text" name="username" required>
+                            <input type="text" name="username" id="username">
                             <label>Username</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="email" name="email" required>
+                            <input type="email" name="email" id="email">
                             <label>Email</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="password" required>
+                            <input type="password" name="password" >
                             <label>Password</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="confirm" required>
+                            <input type="password" name="confirm" >
                             <label>Confirm Password</label>
                             <span></span>
                         </div>
@@ -392,33 +353,14 @@
     </div>
 </div>
 <style>
-    #cartModal .modal-title {
-        float: left;
-    }
-
-    #cartModal #qty input {
-        width: 50px;
-    }
-
-    #cartModal td {
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    #cartModal th {
-        text-align: center;
-    }
-
-    #cartModal .d-flex {
-        text-align: end;
-        margin-right: 1vw;
-    }
-
-    #cartModal .modal-footer {
-        margin-right: 1vw;
-    }
-    h3{
-        margin: 1px;
-    }
+    #cartModal .modal-title{float:left;}
+    #cartModal #qty input{width:50px;}
+    #cartModal td{text-align:center;vertical-align:middle;}
+    #cartModal th{text-align:center;}
+    #cartModal .d-flex{text-align:end;margin-right:1vw;}
+    #cartModal .modal-footer{margin-right:1vw;}
+    h3{margin:1px;}
+    label.error{width:100%;color:red!important;text-align:right;}
 </style>
+
 

@@ -1,4 +1,5 @@
-label{margin:7px 0 16px !important;font-size:20px;margin-left:1px;}
+label{margin:7px 0 8px !important;font-size:20px;margin-left:1px;}
+.form-group.row{margin-bottom: 0px!important;}
 .snippet form{margin-top:2vh;font-size:17px;}
 .row{margin-left:-10px;}
 .col-sm-7 ul li{font-size:18px;}

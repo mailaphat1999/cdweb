@@ -150,7 +150,7 @@
                                     <span class="item_price">${product.priceFormat}</span>
                                 </div>
                                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                                    <form action="" method="post">
+                                    <form action="/cart/add?id=${product.id}" method="post">
                                         <input type="submit" name="submit" value="Add to cart" class="button"/>
                                     </form>
                                 </div>
@@ -344,6 +344,10 @@
     });
 </script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script type="text/javascript" src="js/myValidation/customRule.js"></script>
+<script type="text/javascript" src="js/myValidation/headerForm.js"></script>
 
 </body>
 </html>
