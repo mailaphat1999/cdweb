@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 
 @Getter @Setter @NoArgsConstructor
@@ -15,17 +17,28 @@ import java.util.ArrayList;
 @Table(name = "chitietdonhang")
 public class OrderDetail {
     @Id
+    @Min(1) @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idchitiet")
     private String id;
+
+    @Min(1) @NotNull
     @Column(name = "idsp")
     private String idProduct;
+
+    @NotNull
     @Column(name = "soluong")
     private int amount;
+
+    @NotNull
     @Column(name = "tamtinh")
     private int price;
+
+    @NotNull
     @Column(name = "giamgia")
     private int sale;
+
+    @NotNull
     @Column(name = "tongcong")
     private int total;
 

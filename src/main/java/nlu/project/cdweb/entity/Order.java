@@ -6,6 +6,10 @@ import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -16,19 +20,31 @@ import java.util.Set;
 @Table(name = "donhang")
 public class Order {
     @Id
+    @Min(1) @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddonhang")
     private String id;
+
     @Column(name = "idtinhtrang")
+    @Max(1) @NotNull
     private String status;
+
     @Column(name = "ngaytao")
+    @Min(1) @NotNull
     private String dayCreate;
+
     @Column(name = "diachi")
+    @NotNull
     private String address;
+
     @Column(name = "hinhthuctt")
     private String payMethod;
+
+    @NotNull @Min(4)
     @Column(name = "ten")
     private String nameReceive;
+
+    @NotNull @Max(10)
     @Column(name = "sdt")
     private String phone;
 

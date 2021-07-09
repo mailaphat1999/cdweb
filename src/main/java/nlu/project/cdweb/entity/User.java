@@ -1,6 +1,7 @@
 package nlu.project.cdweb.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,36 +17,56 @@ import java.util.Set;
 @Proxy(lazy=false)
 @Table(name = "nguoidung")
 public class User {
-	@Id
+    @Id @Min(1) @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "iduser")
     private String id;
+
+    @Min(6) @NotNull
 	@Column(name = "taikhoan")
     private String username;
+    @Min(6) @NotNull
 	@Column(name = "matkhau")
     private String password;
+
 	@Column(name = "ten")
     private String name;
+
 	@Column(name = "img")
     private String image;
+
+    @Min(10)
 	@Column(name = "sdt")
     private String phone;
+    @NotNull
 	@Column(name = "diachi")
     private String address;
+    @Email
 	@Column(name = "email")
     private String email;
+
+    @NotNull
 	@Column(name = "gioitinh")
     private String gender;
+
+
 	@Column(name = "ngaysinh")
     private String dob;
+
 	@Column(name = "ptthanhtoan")
     private String payMethod;
+
+    @NotNull @NotEmpty @Max(1)
 	@Column(name = "quyen")
     private String permission;
+    @NotNull @NotEmpty @Max(1)
 	@Column(name = "active")
     private String active;
+
+    @NotNull @Min(10)
 	@Column(name = "ngaysuacuoi")
     private String lastChange;
+    @NotNull @Min(10)
 	@Column(name = "ngaytao")
     private String dateCreate;
 

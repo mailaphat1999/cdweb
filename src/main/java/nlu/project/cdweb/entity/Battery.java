@@ -5,6 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
@@ -12,12 +16,16 @@ import java.util.Set;
 @Entity
 @Table(name = "pin")
 public class Battery {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idpin")
+    @Min(1) @NotNull
     private String id;
+
+    @NotNull @NotEmpty
     @Column(name = "dungluong")
     private String content;
+
+    @NotNull @NotEmpty @Max(1)
     @Column(name = "active")
     private String active;
 

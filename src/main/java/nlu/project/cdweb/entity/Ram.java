@@ -3,8 +3,13 @@ package nlu.project.cdweb.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
@@ -12,12 +17,16 @@ import java.util.Set;
 @Entity
 @Table(name = "ram")
 public class Ram {
-    @Id
+    @Id @Min(1) @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idram")
     private String id;
+
+    @NotNull @NotEmpty
     @Column(name = "dungluong")
     private String content;
+
+    @NotNull @NotEmpty @Max(1)
     @Column(name = "active")
     private String active;
 

@@ -6,6 +6,8 @@ import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Getter @Setter @NoArgsConstructor
 
@@ -14,7 +16,7 @@ import javax.persistence.*;
 @Table(name = "yeuthich")
 
 public class Wishlist {
-    @Id
+    @Id @Min(1) @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idlove")
     private String id;

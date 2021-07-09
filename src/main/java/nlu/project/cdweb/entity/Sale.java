@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
@@ -12,16 +13,21 @@ import java.util.Set;
 @Entity
 @Table(name = "khuyenmai")
 public class Sale {
-    @Id
+    @Id @Min(1) @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idkm")
     private String id;
+
+    @NotNull @Size(min = 1)
     @Column(name = "sale")
     private int percent;
+
     @Column(name = "ngaybdkm")
     private String start;
     @Column(name = "ngayktkm")
     private String end;
+
+    @NotNull @NotEmpty @Max(1)
     @Column(name = "active")
     private String active;
 
