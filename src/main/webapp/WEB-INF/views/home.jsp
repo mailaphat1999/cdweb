@@ -294,6 +294,12 @@
 <!-- //footer -->
 
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+<link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+<script src="js/jquery-ui/external/jquery/jquery.js"></script>
+<script src="js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/mySearch.js"></script>
+
 <script src="js/modernizr.custom.js"></script>
 
 <script src="js/easy-responsive-tabs.js"></script>
@@ -348,6 +354,10 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 <script type="text/javascript" src="js/myValidation/customRule.js"></script>
 <script type="text/javascript" src="js/myValidation/headerForm.js"></script>
+
+
+
+
 
 </body>
 </html>

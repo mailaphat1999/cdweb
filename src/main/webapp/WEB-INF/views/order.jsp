@@ -1,4 +1,4 @@
-<%@ page import="nlu.project.cdweb.entity.Cart" %>
+<%@ page import="nlu.project.cdweb.model.Cart" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="th" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -149,6 +149,12 @@
 <%@ include file="footer.jsp" %>
 <!-- //footer -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+<link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+<script src="js/jquery-ui/external/jquery/jquery.js"></script>
+<script src="js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/mySearch.js"></script>
+
 <script src="js/modernizr.custom.js"></script>
 <script src="js/easy-responsive-tabs.js"></script>
 <script>

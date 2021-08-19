@@ -1,7 +1,7 @@
 package nlu.project.cdweb.controller;
 
 
-import nlu.project.cdweb.entity.Cart;
+import nlu.project.cdweb.model.Cart;
 import nlu.project.cdweb.entity.Product;
 import nlu.project.cdweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,9 @@
-package nlu.project.cdweb.entity;
+package nlu.project.cdweb.model;
 
 import lombok.Getter;
 import lombok.Setter;
 import nlu.project.cdweb.custom.Config;
+import nlu.project.cdweb.entity.Product;
 
 import java.util.HashMap;
 

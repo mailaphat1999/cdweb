@@ -255,6 +255,12 @@
 <%@ include file="footer.jsp" %>
 <!-- //footer -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/js/jquery-ui/jquery-ui.min.css">
+<script src="${pageContext.request.contextPath}/js/jquery-ui/external/jquery/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/mySearch.js"></script>
+
 <script src="${pageContext.request.contextPath}/js/modernizr.custom.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/imagezoom.js"></script>

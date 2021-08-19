@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @Table(name = "chitietdonhang")
 public class OrderDetail {
     @Id
-    @Min(1) @NotNull
+    @Min(1)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idchitiet")
     private String id;

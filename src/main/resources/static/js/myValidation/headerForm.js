@@ -90,8 +90,8 @@ $(function () {
                 },
                 confirm: {
                     required: true,
-                    equalTo: '#password',
-                    minlength: 6
+                    minlength: 6,
+                    equalTo: "#password"
                 },
                 email: {
                     required: true,
@@ -109,8 +109,9 @@ $(function () {
                     minlength: 'Password at least 6 characters'
                 }, confirm: {
                     required: 'Please confirm password!',
-                    equalTo: 'Please enter same password!',
-                    minlength: 'Confirm password at least 6 characters'
+                    minlength: 'Confirm password at least 6 characters',
+                    equalTo: 'Please enter same password!'
+
                 }, email: {
                     required: 'Please enter email!',
                     email: 'Please enter valid email!'

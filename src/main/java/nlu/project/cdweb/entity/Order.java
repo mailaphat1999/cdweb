@@ -20,17 +20,16 @@ import java.util.Set;
 @Table(name = "donhang")
 public class Order {
     @Id
-    @Min(1) @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "iddonhang")
     private String id;
 
     @Column(name = "idtinhtrang")
-    @Max(1) @NotNull
+    @NotNull
     private String status;
 
     @Column(name = "ngaytao")
-    @Min(1) @NotNull
+    @NotNull
     private String dayCreate;
 
     @Column(name = "diachi")
@@ -40,11 +39,11 @@ public class Order {
     @Column(name = "hinhthuctt")
     private String payMethod;
 
-    @NotNull @Min(4)
+    @NotNull
     @Column(name = "ten")
     private String nameReceive;
 
-    @NotNull @Max(10)
+    @NotNull
     @Column(name = "sdt")
     private String phone;
 

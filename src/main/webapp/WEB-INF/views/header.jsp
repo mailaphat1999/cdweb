@@ -24,7 +24,7 @@
     <div class="header-bot_inner_wthreeinfo_header_mid">
         <div class="col-md-4 header-middle">
             <form action="/search" method="post">
-                <input type="search" name="search" placeholder="Search here..." >
+                <input type="search" name="search" id="search" onkeypress="autoSearch()" placeholder="Search here..." >
                 <input type="submit" value=" ">
                 <div class="clearfix"></div>
             </form>
@@ -205,12 +205,12 @@
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="password" >
+                            <input type="password" name="password" id="password">
                             <label>Password</label>
                             <span></span>
                         </div>
                         <div class="styled-input">
-                            <input type="password" name="confirm" >
+                            <input type="password" name="confirm" id="confirm">
                             <label>Confirm Password</label>
                             <span></span>
                         </div>
@@ -361,6 +361,18 @@
     #cartModal .modal-footer{margin-right:1vw;}
     h3{margin:1px;}
     label.error{width:100%;color:red!important;text-align:right;}
+    .ui-menu-item-wrapper{
+        border: #0da9ef solid 2px!important;
+        padding: 10px;
+        z-index: 100;
+    }
+    .bs-autocomplete-menu{
+        background-color: white;
+    }
 </style>
+
+
+
+
 
 

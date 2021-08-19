@@ -1,22 +1,27 @@
 package nlu.project.cdweb.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import nlu.project.cdweb.custom.Config;
 import nlu.project.cdweb.entity.Price;
 import nlu.project.cdweb.entity.Product;
+import nlu.project.cdweb.model.SearchItem;
 import nlu.project.cdweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -83,6 +88,23 @@ public class ListProductController {
 		String parameter = "?q="+search;
 		List<Product> listProduct = productService.search(search);
 		return loadProductAndPara(request, model, parameter, listProduct);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/autosearch",method = RequestMethod.POST, produces = "application/json")
+	public String autoSearch(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String search = request.getParameter("q");
+		List<Product> listProduct = productService.search(search);
+		List<SearchItem> listItem = new ArrayList<>();
+
+		for (Product p: listProduct) {
+			listItem.add(new SearchItem(p.getId(),p.getName(),p.getPrice()));
+		}
+
+		Map<String, SearchItem> map = listItem.stream()
+				.collect(Collectors.toMap(SearchItem::getId, Function.identity()));
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(map);
 	}
 
 	private String loadProductAndPara(HttpServletRequest request, Model model, String parameter, List<Product> listProduct) {
