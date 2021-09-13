@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 @Controller
@@ -59,14 +62,25 @@ public class CartController {
         return new ModelAndView( "redirect:"+referer);
     }
 
-    @RequestMapping("cart/update")
-    public void updateCart(HttpSession session) {
+    @RequestMapping(value = "cart/update",method = RequestMethod.POST)
+    public void updateCart(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (session.getAttribute("cart") == null) {
             cart = new Cart();
             session.setAttribute("cart", cart);
-        } else cart = (Cart) session.getAttribute("cart");
-        session.setAttribute("cart", cart);
+            response.getWriter().println(true);
+        } else {
+            cart = (Cart) session.getAttribute("cart");
 
+            String[] myJsonData = request.getParameterValues("json[]");
+            ArrayList<Integer> listQty = new ArrayList<>();
+            for (int i = 0; i < myJsonData.length; i++) {
+                listQty.add(Integer.parseInt(myJsonData[i]));
+            }
+            cart.update(listQty);
+            session.setAttribute("cart", cart);
+            response.getWriter().println(false);
+        }
+        return;
     }
 
     public static Cart getCart(HttpSession session){

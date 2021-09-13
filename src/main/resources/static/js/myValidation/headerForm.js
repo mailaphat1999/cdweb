@@ -1,7 +1,9 @@
 let exist;let exist2;
-$.when(checkExist(), checkExist2()).done(function(){
 
-});
+$.when(checkExist()).done(function(){});
+$.when(checkExist2()).done(function(){});
+
+
 function checkExist() {
     let email = $("#email").val();
     $.ajax({

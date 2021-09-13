@@ -70,11 +70,11 @@
                                          alt="Sheep">
                                 </td>
                                 <td>${detail.value.product.name}</td>
-                                <td class="dataPrice">${detail.value.product.price}</td>
-                                <td id="qty"><input name="dataQuanlity" onchange="update()" type="text"
+                                <td class="dataPrice2">${detail.value.product.price}</td>
+                                <td id="qty"><input name="dataQuanlity2" onchange="updateCart_Cart()" type="text"
                                                     class="form-control"
                                                     id="input1" value="${detail.value.quatity}"></td>
-                                <td class="dataTotal">${detail.value.total}</td>
+                                <td class="dataTotal2">${detail.value.total}</td>
                                 <td>
                                     <form action="${pageContext.request.contextPath}/cart/remove?id=${detail.value.product.id}"
                                           method="post">
@@ -90,7 +90,7 @@
                     </table>
                     <div class="d-flex justify-content-end" style="width: 32%;float: right; margin-bottom: 2vw;">
                         <h3>Sub Total:
-                            <div id="subtotal" style="float: right;" class="price text-success">
+                            <div id="subtotal2" style="float: right;" class="price text-success">
                                 <b>${cart.updateTotal()}</b>
                             </div>
                         </h3>
@@ -100,7 +100,7 @@
                         </h3>
                         <br/>
                         <h3>Total:
-                            <div id="carttotal" style="float: right;margin-bottom: 8px" class="price text-success">
+                            <div id="carttotal2" style="float: right;margin-bottom: 8px" class="price text-success">
                                 <b>${cart.updateTotal()+10000}</b></div>
                         </h3>
                         <br/>
@@ -171,6 +171,43 @@
     $(document).ready(function () {
         $().UItoTop({easingType: 'easeOutQuart'});
     });
+</script>
+<script>
+    function updateCart_Cart(){
+        let list = document.getElementsByName('dataQuanlity2');
+        let total = document.getElementsByClassName('dataTotal2');
+        let price = document.getElementsByClassName('dataPrice2');
+
+        let list2 = document.getElementsByName('dataQuanlity');
+        let total2 = document.getElementsByClassName('dataTotal');
+
+        let subtotal2 = 0;
+        let json = [];
+        for (let i = 0; i < list.length; i++) {
+            json[i] = list[i].value;
+        }
+
+        $.ajax({
+            url:"/cart/update",
+            type:"POST",
+            data: {json:json},
+            success:function(){
+                subtotal = 0;
+                for (let i = 0; i < list.length; i++) {
+                    total[i].innerHTML = price[i].innerHTML * list[i].value;
+                    subtotal2 += price[i].innerHTML * list[i].value;
+
+                    list2[i].value = list[i].value;
+                    total2[i].innerHTML = price[i].innerHTML * list[i].value;
+                }
+                $("#subtotal2").text(subtotal2);
+                $("#carttotal2").text(subtotal2+10000);
+
+                $("#subtotal").text(subtotal2);
+                $("#carttotal").text(subtotal2+10000);
+            },
+        });
+    }
 </script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>

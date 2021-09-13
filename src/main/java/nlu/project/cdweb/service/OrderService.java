@@ -7,12 +7,15 @@ import nlu.project.cdweb.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public interface OrderService {
 	List<Order> list();
 	void save(Order order);
 	void cancelOrder(String id);
+	List<Order> getOrder(String id);
 }
 
 @Service
@@ -27,6 +30,7 @@ class OrderServiceImpl implements OrderService{
 	public List<Order> list() { return orderRepository.findAll(); }
 	@Override
 	public void save(Order order) {
+
 		orderRepository.saveAndFlush(order);
 		for (OrderDetail detail:order.getItems()) {
 			detail.setOrder(order);
@@ -39,4 +43,8 @@ class OrderServiceImpl implements OrderService{
 		orderRepository.cancelOrder(id);
 	}
 
+	@Override
+	public List<Order> getOrder(String id) {
+		return orderRepository.getOrder(id);
+	}
 }

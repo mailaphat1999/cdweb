@@ -5,7 +5,9 @@ import lombok.Setter;
 import nlu.project.cdweb.entity.CartDetail;
 import nlu.project.cdweb.entity.Product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Cart {
@@ -89,5 +91,17 @@ public class Cart {
     }
     public int getTotal(){
         return total;
+    }
+
+    public void update(ArrayList<Integer> listQty) {
+        Iterator cartIterator = getDetails().entrySet().iterator();
+        int index = 0;
+        while (cartIterator.hasNext()){
+            CartDetail detail = (CartDetail) (((Map.Entry) cartIterator.next()).getValue());
+            detail.setQuatity(listQty.get(index));
+            detail.updateTotal();
+            index++;
+        }
+        updateTotal();
     }
 }

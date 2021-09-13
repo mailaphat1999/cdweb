@@ -6,6 +6,7 @@ import nlu.project.cdweb.entity.*;
 import nlu.project.cdweb.entity.CartDetail;
 import nlu.project.cdweb.model.Cart;
 import nlu.project.cdweb.service.OrderService;
+import nlu.project.cdweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,8 @@ public class OrderController {
     User user;
     @Autowired
     OrderService orderService;
+    @Autowired
+    ProductService productService;
 
     @RequestMapping(value = "/order",method = RequestMethod.GET)
     public String order(HttpSession session, Model model) {
@@ -52,6 +55,17 @@ public class OrderController {
         }
         order.setItems(details);
         orderService.save(order);
+
+
+        Set<Order> save = new HashSet<>(orderService.getOrder(user.getId()));
+        for (Order orders: save) {
+            for (OrderDetail detail: orders.getItems()) {
+                detail.setItem(productService.findByID(detail.getIdProduct()));
+            }
+        }
+        user.setOrders(save);
+        session.setAttribute("user",user);
+
         return new ModelAndView("success");
     }
 

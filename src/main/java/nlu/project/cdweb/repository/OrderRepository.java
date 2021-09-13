@@ -1,12 +1,14 @@
 package nlu.project.cdweb.repository;
 
 import nlu.project.cdweb.entity.Order;
+import nlu.project.cdweb.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, String> {
@@ -14,4 +16,6 @@ public interface OrderRepository extends JpaRepository<Order, String> {
     @Modifying
     @Query("update Order o set o.status = '4' WHERE o.id = ?1 ")
     void cancelOrder(String id);
+    @Query("select o from Order o WHERE o.order.id = ?1 ")
+    List<Order> getOrder(String id);
 }

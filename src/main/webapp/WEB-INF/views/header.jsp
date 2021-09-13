@@ -307,7 +307,7 @@
                                 </td>
                                 <td>${detail.value.product.name}</td>
                                 <td class="dataPrice">${detail.value.product.price}</td>
-                                <td id="qty"><input name="dataQuanlity" onchange="update()" type="text"
+                                <td id="qty"><input name="dataQuanlity" onchange="updateCart_Head()" type="text"
                                                     class="form-control"
                                                     id="input1" value="${detail.value.quatity}"></td>
                                 <td class="dataTotal">${detail.value.total}</td>
@@ -370,6 +370,44 @@
         background-color: white;
     }
 </style>
+
+<script>
+    function updateCart_Head(){
+        let list = document.getElementsByName('dataQuanlity');
+        let total = document.getElementsByClassName('dataTotal');
+        let price = document.getElementsByClassName('dataPrice');
+
+        let list2 = document.getElementsByName('dataQuanlity2');
+        let total2 = document.getElementsByClassName('dataTotal2');
+
+        let subtotal = 0;
+        let json = [];
+        for (let i = 0; i < list.length; i++) {
+            json[i] = list[i].value;
+        }
+
+        $.ajax({
+            url:"/cart/update",
+            type:"POST",
+            data: {json:json},
+            success:function(){
+                subtotal = 0;
+                for (let i = 0; i < list.length; i++) {
+                    total[i].innerHTML = price[i].innerHTML * list[i].value;
+                    subtotal += price[i].innerHTML * list[i].value;
+
+                    list2[i].value = list[i].value;
+                    total2[i].innerHTML = price[i].innerHTML * list[i].value;
+                }
+                $("#subtotal").text(subtotal);
+                $("#carttotal").text(subtotal+10000);
+
+                $("#subtotal2").text(subtotal);
+                $("#carttotal2").text(subtotal+10000);
+            },
+        });
+    }
+</script>
 
 
 

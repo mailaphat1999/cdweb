@@ -71,7 +71,7 @@
 
             <div class="occasion-cart">
                 <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                    <form action="/cart/add?id=${product.id}" method="post">
+                    <form action="/cart/add?id=${product.id}&quanlity=" method="post">
                         <fieldset>
                             <input type="submit" name="submit" value="Add to cart" class="button cartbutton">
                             <span class="fa fa-shopping-cart carticondata"></span>
